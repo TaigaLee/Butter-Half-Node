@@ -5,15 +5,23 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  email: {
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     required: true
   },
   location: {
-    type: String,
+    type: Integer,
     required: true
   },
-  bio: String
+  bio: String,
+  age: {
+    type: Integer,
+    required: true
+  }
 });
 
 const User = mongoose.model("User", userSchema);

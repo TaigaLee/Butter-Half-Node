@@ -4,6 +4,8 @@ const app = express();
 const http = require("http").createServer(app);
 const PORT = process.env.PORT;
 
+require("./db/db.js");
+
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
