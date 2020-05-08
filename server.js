@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const http = require("http").createServer(app);
+const session = require("express-session");
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT;
 
 require("./db/db.js");

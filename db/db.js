@@ -9,11 +9,11 @@ mongoose.connect(connectionString, {
 });
 
 mongoose.connection.on("connected", () => {
-  console.log("Connected to nookbook db");
+  console.log("Connected to butterhalf db");
 });
 
 mongoose.connection.on("disconnected", () => {
-  console.log("Disconnected from nookbook db");
+  console.log("Disconnected from butterhalf db");
 });
 
 mongoose.connection.on("error", err => {
