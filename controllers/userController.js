@@ -21,4 +21,36 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//edit route
+
+router.get("/edit", async (req, res, next) => {
+  try {
+    if (req.session.loggedIn) {
+      const userToEdit = await User.findById(req.session.userId);
+
+      res.status(200).json({
+        data: userToEdit,
+        message: "Successfully found user to edit",
+      });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put("/edit", async (req, res, next) => {
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.session.userId,
+      req.body
+    );
+
+    res.status(200).json({
+      message: "Successfully updated user",
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
