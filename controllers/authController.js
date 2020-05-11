@@ -34,6 +34,10 @@ router.post("/register", async (req, res, next) => {
         bio: req.body.bio,
       });
 
+      req.session.loggedIn = true;
+      req.session.userId = createdUser._id;
+      req.session.username = createdUser.username;
+
       res.status(200).json({
         data: createdUser,
         message: "Successfully created user",
@@ -62,10 +66,21 @@ router.post("/login", async (req, res, next) => {
           message: "Invalid password or username",
         });
       }
+
+      req.session.loggedIn = true;
+      req.session.userId = user._id;
+      req.session.username = user.username;
     }
   } catch (err) {
     next(err);
   }
+});
+
+router.get("/logout", async (req, res) => {
+  await req.session.destroy();
+  res.status(200).json({
+    message: "Successfully logged out",
+  });
 });
 
 module.exports = router;
