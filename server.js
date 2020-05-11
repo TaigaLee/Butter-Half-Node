@@ -9,6 +9,13 @@ const PORT = process.env.PORT;
 require("./db/db.js");
 
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//controllers
+
+const authController = require("./controllers/authController.js");
+app.use("/auth", authController);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
