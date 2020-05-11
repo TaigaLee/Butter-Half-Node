@@ -17,6 +17,6 @@ const requestSchema = new mongoose.Schema({
   accepted: Boolean,
 });
 
-const User = mongoose.model("Request", requestSchema);
+const Request = mongoose.model("Request", requestSchema);
 
 module.exports = Request;
