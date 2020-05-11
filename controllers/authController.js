@@ -57,6 +57,9 @@ router.post("/login", async (req, res, next) => {
     if (user) {
       const validLogin = bcrypt.compareSync(req.body.password, user.password);
       if (validLogin) {
+        req.session.loggedIn = true;
+        req.session.userId = user._id;
+        req.session.username = user.username;
         res.status(200).json({
           data: user,
           message: "Successfully logged in",
@@ -66,10 +69,6 @@ router.post("/login", async (req, res, next) => {
           message: "Invalid password or username",
         });
       }
-
-      req.session.loggedIn = true;
-      req.session.userId = user._id;
-      req.session.username = user.username;
     }
   } catch (err) {
     next(err);
