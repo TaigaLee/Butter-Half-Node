@@ -25,6 +25,9 @@ app.use(
 const authController = require("./controllers/authController.js");
 app.use("/auth", authController);
 
+const userController = require("./controllers/userController.js");
+app.use("/user", userController);
+
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
