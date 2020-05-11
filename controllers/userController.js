@@ -53,4 +53,21 @@ router.put("/edit", async (req, res, next) => {
   }
 });
 
+// delete route
+router.delete("/", async (req, res, next) => {
+  try {
+    const deletedUser = await User.deleteOne({
+      username: req.session.username,
+    });
+
+    await req.session.destroy();
+
+    res.status(200).json({
+      message: "Successfully deleted user",
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
