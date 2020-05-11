@@ -44,4 +44,28 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
+router.post("/login", async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      username: req.body.username,
+    });
+
+    if (user) {
+      const validLogin = bcrypt.compareSync(req.body.password, user.password);
+      if (validLogin) {
+        res.status(200).json({
+          data: user,
+          message: "Successfully logged in",
+        });
+      } else {
+        res.status(401).json({
+          message: "Invalid password or username",
+        });
+      }
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
