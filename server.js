@@ -31,6 +31,9 @@ app.use("/user", userController);
 const requestController = require("./controllers/requestController.js");
 app.use("/request", requestController);
 
+const restaurantController = require("./controllers/restaurantController.js");
+app.use("/restaurant", restaurantController);
+
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
