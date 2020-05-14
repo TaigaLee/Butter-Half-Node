@@ -31,6 +31,7 @@ router.get("/edit", async (req, res, next) => {
       res.status(200).json({
         data: userToEdit,
         message: "Successfully found user to edit",
+        status: 200,
       });
     }
   } catch (err) {
@@ -42,11 +43,16 @@ router.put("/edit", async (req, res, next) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.session.userId,
-      req.body
+      req.body,
+      {
+        new: true,
+      }
     );
 
     res.status(200).json({
       message: "Successfully updated user",
+      status: 200,
+      data: updatedUser,
     });
   } catch (err) {
     next(err);
@@ -57,13 +63,15 @@ router.put("/edit", async (req, res, next) => {
 router.delete("/", async (req, res, next) => {
   try {
     const deletedUser = await User.deleteOne({
-      username: req.session.username,
+      email: req.session.email,
     });
 
     await req.session.destroy();
 
     res.status(200).json({
       message: "Successfully deleted user",
+      data: deletedUser,
+      status: 200,
     });
   } catch (err) {
     next(err);

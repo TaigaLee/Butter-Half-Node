@@ -5,12 +5,20 @@ const http = require("http").createServer(app);
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT;
+const cors = require("cors");
 
 require("./db/db.js");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 app.use(
   session({

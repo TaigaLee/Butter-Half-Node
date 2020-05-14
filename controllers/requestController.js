@@ -35,10 +35,12 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // post route
-router.post("/", async (req, res, next) => {
+router.post("/new", async (req, res, next) => {
   try {
     const requestToCreate = {
-      restaurant: req.body.restaurant,
+      restaurantName: req.body.restaurantName,
+      restaurantAddress: req.body.restaurantAddress,
+      restaurantCity: req.body.restaurantCity,
       user: req.session.userId,
       extraInfo: req.body.extraInfo,
       typeOfDate: req.body.typeOfDate,

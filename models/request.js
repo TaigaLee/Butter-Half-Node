@@ -6,13 +6,18 @@ const requestSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  restaurant: String,
+  restaurantName: String,
+  restaurantAddress: String,
+  restaurantCity: String,
   timePosted: {
     type: Date,
     default: Date.now,
   },
   extraInfo: String,
-  typeOfDate: String,
+  typeOfDate: {
+    type: String,
+    enum: ["date", "friends", "either"],
+  },
   viewed: Boolean,
   accepted: Boolean,
 });

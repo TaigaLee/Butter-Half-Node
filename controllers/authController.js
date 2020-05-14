@@ -11,22 +11,22 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res, next) => {
   try {
-    const desiredUsername = req.body.username;
+    const desiredEmail = req.body.email;
     const desiredPassword = req.body.password;
 
-    const checkUsername = await User.findOne({
-      username: desiredUsername,
+    const checkEmail = await User.findOne({
+      email: desiredEmail,
     });
 
-    if (checkUsername) {
+    if (checkEmail) {
       res.status(401).json({
-        message: "Username already exists",
+        message: "Email already exists",
       });
     } else {
       const salt = bcrypt.genSaltSync(10);
       const bcryptPassword = bcrypt.hashSync(desiredPassword, salt);
       const createdUser = await User.create({
-        username: req.body.username,
+        name: req.body.name,
         email: req.body.email,
         password: bcryptPassword,
         age: req.body.age,
@@ -36,11 +36,12 @@ router.post("/register", async (req, res, next) => {
 
       req.session.loggedIn = true;
       req.session.userId = createdUser._id;
-      req.session.username = createdUser.username;
+      req.session.email = createdUser.email;
 
-      res.status(200).json({
+      res.status(201).json({
         data: createdUser,
         message: "Successfully created user",
+        status: 201,
       });
     }
   } catch (err) {
@@ -51,7 +52,7 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   try {
     const user = await User.findOne({
-      username: req.body.username,
+      email: req.body.email,
     });
 
     if (user) {
@@ -59,14 +60,14 @@ router.post("/login", async (req, res, next) => {
       if (validLogin) {
         req.session.loggedIn = true;
         req.session.userId = user._id;
-        req.session.username = user.username;
+        req.session.email = user.email;
         res.status(200).json({
           data: user,
           message: "Successfully logged in",
         });
       } else {
         res.status(401).json({
-          message: "Invalid password or username",
+          message: "Invalid password or email",
         });
       }
     }
