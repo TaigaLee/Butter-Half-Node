@@ -18,8 +18,7 @@ const requestSchema = new mongoose.Schema({
     type: String,
     enum: ["date", "friends", "either"],
   },
-  viewed: Boolean,
-  accepted: Boolean,
+  typeOfFood: String,
 });
 
 const Request = mongoose.model("Request", requestSchema);

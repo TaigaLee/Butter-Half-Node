@@ -37,6 +37,7 @@ router.post("/register", async (req, res, next) => {
       req.session.loggedIn = true;
       req.session.userId = createdUser._id;
       req.session.email = createdUser.email;
+      req.session.name = createdUser.name;
 
       res.status(201).json({
         data: createdUser,
@@ -61,6 +62,7 @@ router.post("/login", async (req, res, next) => {
         req.session.loggedIn = true;
         req.session.userId = user._id;
         req.session.email = user.email;
+        req.session.name = user.name;
         res.status(200).json({
           data: user,
           message: "Successfully logged in",
@@ -80,6 +82,7 @@ router.get("/logout", async (req, res) => {
   await req.session.destroy();
   res.status(200).json({
     message: "Successfully logged out",
+    status: 200,
   });
 });
 

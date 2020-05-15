@@ -44,6 +44,7 @@ router.post("/new", async (req, res, next) => {
       user: req.session.userId,
       extraInfo: req.body.extraInfo,
       typeOfDate: req.body.typeOfDate,
+      typeOfFood: req.body.typeOfFood,
     };
 
     const createdRequest = await Request.create(requestToCreate);
@@ -110,9 +111,12 @@ router.put("/:id", async (req, res, next) => {
 
     if (request.user == req.session.userId) {
       const requestToUpdate = {
-        restaurant: req.body.restaurant,
+        restaurantName: req.body.restaurantName,
+        restaurantCity: req.body.restaurantCity,
+        restaurantAddress: req.body.restaurantAddress,
         extraInfo: req.body.extraInfo,
         typeOfDate: req.body.typeOfDate,
+        typeOfFood: req.body.typeOfFood,
       };
 
       const updatedRequest = await Request.findByIdAndUpdate(
