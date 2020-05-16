@@ -17,6 +17,7 @@ app.use(
   cors({
     origin: "https://butter-half-react.herokuapp.com",
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 
