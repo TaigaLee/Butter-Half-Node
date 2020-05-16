@@ -13,14 +13,19 @@ router.post("/register", async (req, res, next) => {
   try {
     const desiredEmail = req.body.email;
     const desiredPassword = req.body.password;
+    const desiredChatUsername = req.body.chatUsername;
 
     const checkEmail = await User.findOne({
       email: desiredEmail,
     });
 
-    if (checkEmail) {
+    const checkChatUsername = await User.findOne({
+      chatUsername: desiredChatUsername,
+    });
+
+    if (checkEmail && checkChatUsername) {
       res.status(401).json({
-        message: "Email already exists",
+        message: "Email or chat username already exists",
       });
     } else {
       const salt = bcrypt.genSaltSync(10);
@@ -32,6 +37,7 @@ router.post("/register", async (req, res, next) => {
         age: req.body.age,
         location: req.body.location,
         bio: req.body.bio,
+        chatUsername: req.body.chatUsername,
       });
 
       req.session.loggedIn = true;

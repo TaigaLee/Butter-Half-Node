@@ -20,6 +20,8 @@ app.use(
   })
 );
 
+app.options("*", cors());
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

@@ -19,25 +19,11 @@ const userSchema = new mongoose.Schema({
   },
   profilePicture: String,
   bio: String,
-  age: {
-    type: Number,
+  age: Number,
+  chatUsername: {
+    type: String,
     required: true,
   },
-  postedRequests: [
-    {
-      type: String,
-    },
-  ],
-  requested: [
-    {
-      type: String,
-    },
-  ],
-  sentRequests: [
-    {
-      type: String,
-    },
-  ],
 });
 
 const User = mongoose.model("User", userSchema);
