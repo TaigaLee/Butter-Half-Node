@@ -4,7 +4,7 @@ const app = express();
 const http = require("http").createServer(app);
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 const cors = require("cors");
 
 require("./db/db.js");
