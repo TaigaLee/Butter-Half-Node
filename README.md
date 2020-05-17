@@ -26,3 +26,4 @@ https://wireframepro.mockflow.com/view/Mc820e506732baeeae70ff45b7f051bba15887095
 
 * Requests based on geolocation
 * Message button opening specific chats. 
+* Use the restaurant model to save into database
