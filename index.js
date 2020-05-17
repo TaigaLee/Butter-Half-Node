@@ -44,7 +44,7 @@ const restaurantController = require("./controllers/restaurantController.js");
 app.use("/restaurant", restaurantController);
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Butter half backend");
 });
 
 http.listen(PORT, () => {
