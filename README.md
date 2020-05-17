@@ -18,7 +18,7 @@ Butter Half is a platform where users will be able to always find someone to din
 * React
 * Semantic UI and Material UI
 
-## Wireframes, User Stores
+## Wireframes, User Stores, Routes
 
 https://wireframepro.mockflow.com/view/Mc820e506732baeeae70ff45b7f051bba1588709501800#/page/8f8ddcc9c64d4edb85781234086a8ebd
 
